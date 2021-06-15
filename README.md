@@ -1,7 +1,4 @@
-TODO: Add more to the title of your project here
-First day of being more reproducible when working in R
-
-# LearningR:
+# LearningR: Practicing awesomeness :)
 
 TODO: Give a brief description of what your project is about
 
