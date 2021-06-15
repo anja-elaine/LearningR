@@ -1,8 +1,6 @@
 # LearningR: Practicing awesomeness :)
 
-TODO: Give a brief description of what your project is about
-
-This project is about learning the how-tos 
+This is for the DDA R course Yaaaayyy!!!!
 
 # Brief description of folder and file contents
 
