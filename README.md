@@ -1,4 +1,4 @@
-# LearningR: Practicing boringness...
+# LearningR: Practicing amazingness 🤩
 
 This is for the DDA R course Yaaaayyy!!!!
 
