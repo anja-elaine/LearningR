@@ -1,4 +1,4 @@
-# LearningR: Practicing awesomeness :)
+# LearningR: Practicing amazingness 🤩
 
 This is for the DDA R course Yaaaayyy!!!!
 
