@@ -207,3 +207,31 @@ nhanes_small %>%
     summarise(median_age = median(age, na.rm = TRUE),
               median_phys_activve_days = median(phys_active_days, na.rm = TRUE))
 
+# 9.17 Summary statistics by a group --------------------------------------
+# Now doing the same thing BUT by group
+nhanes_small %>%
+    group_by(diabetes) %>%
+    summarise(mean_age = mean(age, na.rm = TRUE),
+              mean_bmi = mean(bmi, na.rm = TRUE))
+
+nhanes_small %>%
+    # Recall ! means "NOT", so !is.na means "is not missing"
+    filter(!is.na(diabetes)) %>%
+    group_by(diabetes) %>%
+    summarise(mean_age = mean(age, na.rm = TRUE),
+              mean_bmi = mean(bmi, na.rm = TRUE))
+
+# Grouping by both diabetes AND sex
+nhanes_small %>%
+    filter(!is.na(diabetes)) %>%
+    group_by(diabetes, sex) %>%
+    summarise(mean_age = mean(age, na.rm = TRUE),
+              mean_bmi = mean(bmi, na.rm = TRUE))
+# Since we are grouping by diabetes,
+# it’s good practice to end the grouping with ungroup().
+nhanes_small %>%
+    filter(!is.na(diabetes)) %>%
+    group_by(diabetes, sex) %>%
+    summarise(mean_age = mean(age, na.rm = TRUE),
+              mean_bmi = mean(bmi, na.rm = TRUE)) %>%
+    ungroup()
