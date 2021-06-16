@@ -235,3 +235,33 @@ nhanes_small %>%
     summarise(mean_age = mean(age, na.rm = TRUE),
               mean_bmi = mean(bmi, na.rm = TRUE)) %>%
     ungroup()
+# Saving datasets as files
+usethis::use_data(nhanes_small, overwrite = TRUE)
+
+# 9.18 Exercise: Answer some statistical questions with group by a --------
+
+# 1. What is the mean, max, and min differences in age
+# between females and males with or without diabetes?
+
+nhanes_small %>%
+    filter(!is.na(diabetes)) %>%
+    group_by(diabetes, sex) %>%
+    summarise(mean_age = mean(age, na.rm = TRUE),
+              max_age = max(age, na.rm = TRUE),
+              min_age = min(age, na.rm = TRUE)) %>%
+    ungroup()
+
+
+# 2. What is the mean, max, and min differences in height
+# and weight between females and males with or without
+# diabetes?
+nhanes_small %>%
+    filter(!is.na(diabetes)) %>%
+    group_by(diabetes, sex) %>%
+    summarise(mean_height = mean(height, na.rm = TRUE),
+              max_height = max(height, na.rm = TRUE),
+              min_height = min(height, na.rm = TRUE)) %>%
+    ungroup()
+
+# Saving datasets as files
+usethis::use_data(nhanes_small, overwrite = TRUE)
