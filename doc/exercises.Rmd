@@ -1,0 +1,45 @@
+---
+title: "Trying out R Markdown"
+author: "Anja Sørensen"
+date: "16/6/2021"
+output: html_document
+---
+- Anja Sørensen
+- Dept. of Natural Science and Environment
+- Roskilde University
+
+# Intro: 10.9 Exercise: Practice using Markdown for writing text
+How to **use** RMarkdown
+
+# Methods and Results
+*Trial* and *Error*
+
+## Analysis
+```{r}
+2 + 2
+```
+
+# Discussion
+
+# Exercise 10.7
+```{r setup}
+source(here::here("R/package-loading.R"))
+load(here::here("data/nhanes_small.rda"))
+```
+
+```{r prettier-table, echo = FALSE}
+nhanes_small %>%
+    filter(!is.na(diabetes)) %>%
+    group_by(diabetes, sex) %>%
+    summarise(mean_age = mean(age, na.rm = TRUE),
+              mean_bmi = mean(bmi, na.rm = TRUE)) %>%
+    ungroup() %>% 
+    mutate(mean_age = round(mean_age, 1),
+           mean_bmi = round(mean_bmi, 1),
+           sex = str_to_sentence(sex)) %>% 
+    rename("Diabetes Status" = diabetes, Sex = sex,
+           "Mean Age" = mean_age, "Mean BMI" = mean_bmi) %>% 
+    knitr::kable(caption = "A Prettier Table 1. Mean age and BMI.")
+```
+
+
