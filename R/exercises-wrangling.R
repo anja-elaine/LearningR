@@ -49,7 +49,8 @@ nhanes_small <- rename(nhanes_small, sex = gender)
 nhanes_small
 
 # Learning to use pipes ---------------------------------------------------
-# These two ways are the same
+# These two ways are the same, with or without pipes
+# Make the pipes using Ctrl-Shift-M
 colnames(nhanes_small)
 nhanes_small %>%
     colnames()
@@ -57,3 +58,23 @@ nhanes_small %>%
 nhanes_small %>%
     select(phys_active) %>%
     rename(physically_active = phys_active)
+
+#New exercise - try out for oneself
+nhanes_small %>%
+    select(tot_chol, bp_sys_ave, poverty)
+
+nhanes_small %>%
+    rename(diabetes_diagnosis_age = diabetes_age)
+
+#Rewrite this to use pipes
+#select(nhanes_small, bmi, contains("age"))
+nhanes_small %>%
+    select(bmi, contains("age"))
+#New rewrite
+# physical_activity <- select(nhanes_small, phys_active_days, phys_active)
+#rename(physical_activity, days_phys_active = phys_active_days)
+
+nhanes_small %>%
+    select(phys_active_days,phys_active) %>%
+    rename(days_phys_active = phys_active_days)
+
