@@ -151,3 +151,34 @@ nhanes_update <- nhanes_small %>%
     mutate(height = height / 100,
            logged_height = log(height),
            highly_active = if_else(phys_active_days >= 5, "Yes", "No"))
+
+# 9.13 Exercise: Piping, filtering, and mutating --------------------------
+# 1. BMI between 20 and 40 with diabetes
+nhanes_small %>%
+    # Format should follow: variable >= number or character
+    filter(___ >= ___ & ___ <= ___ & ___ == ___)
+#Solution
+nhanes_small %>%
+    filter(bmi >= 20 & bmi <=40 & diabetes=="Yes")
+
+
+# Pipe the data into mutate function and:
+#nhanes_modified <- nhanes_small %>% # Specifying dataset
+#    mutate(
+        # 2. Calculate mean arterial pressure
+#        ___ = ___,
+        # 3. Create young_child variable using a condition
+#        ___ = if_else(___, "Yes", "No")
+#    )
+
+#Solution
+nhanes_modified <- nhanes_small %>% # dataset
+    mutate(
+        mean_arterial_pressure = ((2 * bp_dia_ave) + bp_sys_ave) / 3,
+        young_child = if_else(age < 6, "Yes", "No")
+    )
+
+
+# 9.15 Calculating summary statistics -------------------------------------
+
+
