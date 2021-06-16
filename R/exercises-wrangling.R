@@ -180,5 +180,30 @@ nhanes_modified <- nhanes_small %>% # dataset
 
 
 # 9.15 Calculating summary statistics -------------------------------------
+#Calculating the maximum
+nhanes_small %>%
+    summarise(max_bmi = max(bmi)) #doesn't work bc of NAs
+#Now without NAs
+nhanes_small %>%
+    summarise(max_bmi = max(bmi, na.rm = TRUE))
+#Adding more summary stats
+nhanes_small %>%
+    summarise(max_bmi = max(bmi, na.rm = TRUE),
+              min_bmi = min(bmi, na.rm = TRUE))
 
+# 9.16 Exercise: Calculate some basic statistics --------------------------
+# 1. weight and age
+nhanes_small %>%
+    summarise(mean_weight = mean(weight, na.rm = TRUE),
+              mean_age = mean(age, na.rm = TRUE))
+
+# 2. max and min of height
+nhanes_small %>%
+    summarise(max_height = max(height, na.rm = TRUE),
+              min_height = min(height, na.rm = TRUE))
+
+# 3. median of age and phys_active_days
+nhanes_small %>%
+    summarise(median_age = median(age, na.rm = TRUE),
+              median_phys_activve_days = median(phys_active_days, na.rm = TRUE))
 
