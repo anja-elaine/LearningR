@@ -78,3 +78,76 @@ nhanes_small %>%
     select(phys_active_days,phys_active) %>%
     rename(days_phys_active = phys_active_days)
 
+# 9.10 Filtering data by row ----------------------------------------------
+
+# Filter for all female
+nhanes_small %>%
+    filter(sex == "female")
+
+# Participants who are not female
+nhanes_small %>%
+    filter(sex != "female")
+
+# Participants who have BMI equal to 25
+nhanes_small %>%
+    filter(bmi == 25)
+
+# Participants who have BMI equal to or more than 25
+nhanes_small %>%
+    filter(bmi >= 25)
+
+# Test for | (to make that AltGr + knappen nær delete)
+# Test for &
+TRUE & TRUE # gives a TRUE response back
+TRUE & FALSE # Gives a FLASE response back
+FALSE & FALSE # Gives a FLASE response back
+TRUE|TRUE # gives a TRUE response back
+TRUE|FALSE # gives a TRUE response back
+FALSE|FALSE # Gives a FLASE response back
+
+# When BMI is 25 AND sex is female
+nhanes_small %>%
+    filter(bmi == 25 & sex == "female")
+
+# When BMI is 25 OR sex is female
+nhanes_small %>%
+    filter(bmi == 25 | sex == "female")
+
+
+# 9.11 Arranging the rows of your data by column --------------------------
+# Arranging data by age in ascending order
+nhanes_small %>%
+    arrange(age)
+
+# arrange() also arranges parameters of type character alphabetically:
+nhanes_small %>%
+    arrange(sex)
+# Arranging data by age in descending order
+nhanes_small %>%
+    arrange(desc(age))
+# Arranging data by sex then age in ascending order
+nhanes_small %>%
+    arrange(sex, age)
+
+# 9.12 Transform or add columns -------------------------------------------
+# Using the mutate function
+
+# Transform height from cm to m by multiplying with 100
+nhanes_small %>%
+    mutate(height = height / 100)
+# Create a new column with ie. log-trans of height
+nhanes_small %>%
+    mutate(logged_height = log(height))
+#Adding multiple transformations/modifications in one go
+nhanes_small %>%
+    mutate(height = height / 100,
+           logged_height =log(height))
+# logic conditions using if_else()
+nhanes_small %>%
+    mutate(highly_active = if_else(phys_active_days >= 5, "yes", "no"))
+
+#To save it all in a new dataset remember <-
+nhanes_update <- nhanes_small %>%
+    mutate(height = height / 100,
+           logged_height = log(height),
+           highly_active = if_else(phys_active_days >= 5, "Yes", "No"))
