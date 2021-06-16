@@ -1,5 +1,7 @@
 # Description of R/ folder and .R files
 
+Adding a new line HERE
+
 This folder contains custom functions or R scripts used for this project's
 analyses, such as in the `doc/` folder. Each R script is split up into
 sections (e.g. with RStudio's 'Insert Section' with Ctrl-Shift-R) by
