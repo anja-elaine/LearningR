@@ -47,3 +47,13 @@ rename(nhanes_small, sex = gender)
 nhanes_small <- rename(nhanes_small, sex = gender)
 # View data frame
 nhanes_small
+
+# Learning to use pipes ---------------------------------------------------
+# These two ways are the same
+colnames(nhanes_small)
+nhanes_small %>%
+    colnames()
+
+nhanes_small %>%
+    select(phys_active) %>%
+    rename(physically_active = phys_active)
