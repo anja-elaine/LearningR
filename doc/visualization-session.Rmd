@@ -1,0 +1,42 @@
+---
+title: "Data visualization.Rmd"
+author: "Anja Sørensen"
+date: "17/6/2021"
+output: html_document
+---
+### 11.3 Graph individual variables
+
+```{r setup}
+# Load packages
+source(here::here("R/package-loading.R"))
+
+# Load the small, tidied dataset from the wrangling session
+load(here::here("data/nhanes_small.rda"))
+```
+
+# One variable plots
+```{r continuous-variable}
+ggplot(nhanes_small, aes(x = bmi)) +
+    geom_density()
+
+ggplot(nhanes_small, aes(x = bmi)) +
+    geom_histogram()
+```
+
+```{r discrete-variables}
+ggplot(nhanes_small, aes(x = sex)) +
+    geom_bar()
+
+ggplot(nhanes_small, aes(x = diabetes)) +
+    geom_bar()
+```
+```{r remove missing diabetes answer, aka the NAs}
+nhanes_tidy<- nhanes_small %>% 
+    filter(!is.na(diabetes))
+
+usethis::use_data(nhanes_tidy, overwrite = TRUE)
+
+ggplot(nhanes_tidy, aes(x = diabetes)) +
+    geom_bar()
+```
+#Two variable plots

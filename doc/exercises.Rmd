@@ -4,15 +4,15 @@ author: "Anja Sørensen"
 date: "16/6/2021"
 output: html_document
 ---
-- Anja Sørensen
-- Dept. of Natural Science and Environment
-- Roskilde University
+1. Anja Sørensen
+2. Dept. of Natural Science and Environment
+3. Roskilde University
 
 # Intro: 10.9 Exercise: Practice using Markdown for writing text
 How to **use** RMarkdown
 
 # Methods and Results
-*Trial* and *Error*
+Writing in italics is *Trial* and *Error*
 
 ## Analysis
 ```{r}
@@ -41,5 +41,5 @@ nhanes_small %>%
            "Mean Age" = mean_age, "Mean BMI" = mean_bmi) %>% 
     knitr::kable(caption = "A Prettier Table 1. Mean age and BMI.")
 ```
-
+!["pretty kitten"](images/kitten.jpg)
 
