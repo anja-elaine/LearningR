@@ -158,4 +158,59 @@ nhanes_tidy %>%
     facet_grid(rows = vars(diabetes), 
                cols = vars(sex))
 ```
+###11.8 Exercise: Changing the colour scheme
+```{r exercise-discrete-variables-viridis}
+# Barplot to work from, with two discrete variables
+base_barplot <- nhanes_tidy %>% 
+    ggplot(aes(x = diabetes, fill = sex)) +
+    geom_bar(position = position_dodge())
+
+# Using viridis_d when discrete, otherwise, _c
+base_barplot +
+    scale_fill_viridis_d(option = "E")
+
+# Scatterplot to work from, with three continuous variables
+base_scatterplot <- nhanes_tidy %>% 
+    ggplot(aes(x = bmi, y = bp_sys_ave, colour = age)) +
+    geom_point()
+
+base_scatterplot +
+    scale_color_viridis_c(option = "B")
+```
+# 11.9 Titles, axis labels, and themes
+```{r build-in-themes}
+# Create scatterplot to play with themes
+base_scatterplot2 <- base_scatterplot +
+    facet_grid(rows = vars(diabetes),
+               cols = vars(sex)) +
+    scale_color_viridis_c()
+
+# View the plot with the default theme
+base_scatterplot2
+
+# Test out some pre-defined themes
+base_scatterplot2 + 
+    theme_bw()
+
+base_scatterplot2 +
+    theme_minimal()
+
+base_scatterplot2 +
+    theme_dark()
+
+# Set the theme for all plot. 
+# Start the session with this - in the future
+theme_set(theme_bw())
+
+# Change the title and labels
+base_scatterplot2 +
+    labs(title = "BMI, Sys.BP and Age by Diabetes status and Sex",
+         y = "Systolic blood pressure (mmHg)",
+         x = "BMI (kg/m2)")
+```
+# Saving the plots
+```{r}
+ggsave(here::here("doc/images/scatterplot.pdf"), 
+       base_scatterplot2, width = 7, height = 5)
+```
 
