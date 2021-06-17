@@ -29,6 +29,12 @@ ggplot(nhanes_small, aes(x = sex)) +
 
 ggplot(nhanes_small, aes(x = diabetes)) +
     geom_bar()
+
+# Removing NAs
+nhanes_small %>% 
+    drop_na(diabetes) %>% 
+    ggplot(aes(x = diabetes)) +
+    geom_bar()
 ```
 ```{r remove missing diabetes answer, aka the NAs}
 nhanes_tidy<- nhanes_small %>% 
@@ -78,5 +84,78 @@ two_mixed +
 
 two_mixed +
     geom_violin()
+```
+
+### 11.5 Exercise: Creating plots with one or two variables
+```{r exercise}
+# 1a. Distribution of age
+ggplot(nhanes_tidy, aes(x = age)) +
+    geom_histogram()
+    
+# 1b. Distribution of age of diabetes diagnosis
+ggplot(nhanes_tidy, aes(x = diabetes_age)) +
+    geom_histogram()
+
+# 2a. Number of people who smoke now
+ggplot(nhanes_tidy, aes(x = smoke_now)) +
+    geom_bar()
+
+# 2b. Number of people who are physically active
+ggplot(nhanes_tidy, aes(x = phys_active)) +
+    geom_bar()
+
+# 3a. BMI in relation to systolic blood pressure
+ggplot(nhanes_tidy, aes(x = bmi, y = bp_sys_ave)) +
+    geom_hex()
+
+# 3b. BMI relation to diastolic blood pressure
+ggplot(nhanes_tidy, aes(x = bmi, y = bp_dia_ave)) +
+    geom_hex()
+    
+# 4. Physically active people with or without diabetes
+ggplot(nhanes_tidy, aes(x = diabetes, fill = phys_active)) +
+    geom_bar(position = position_dodge())
+
+# 5. Poverty levels between those with or without diabetes
+ggplot(nhanes_tidy, aes(x = diabetes, y = poverty)) +
+    geom_violin()
+```
+### 11.6 Visualizing three or more variables
+
+```{r using-colour}
+# 1 continuous variables and 2 discrete variables
+nhanes_tidy %>% 
+    ggplot(aes(x = sex, y = bp_sys_ave, colour = diabetes)) +
+    geom_boxplot()
+
+# Three continuous variables
+nhanes_tidy %>% 
+    ggplot(aes(x = bmi, y = bp_sys_ave, colour = age)) +
+    geom_point()
+
+# Two continuous and 1 discrete variable
+nhanes_tidy %>% 
+    ggplot(aes(x =bmi, y = bp_sys_ave, colour = diabetes)) +
+    geom_point()
+
+```
+```{r using-faceting}
+# Side-by-side - cols
+nhanes_tidy %>% 
+    ggplot(aes(x = bmi, y = bp_sys_ave)) +
+    geom_point() +
+    facet_grid(cols = vars(diabetes))
+# Stacked - rows
+nhanes_tidy %>% 
+    ggplot(aes(x = bmi, y = bp_sys_ave)) +
+    geom_point() +
+    facet_grid(rows = vars(diabetes))
+
+# Five variables
+nhanes_tidy %>% 
+    ggplot(aes(x = bmi, y = bp_sys_ave, colours = age)) +
+    geom_point() +
+    facet_grid(rows = vars(diabetes), 
+               cols = vars(sex))
 ```
 
