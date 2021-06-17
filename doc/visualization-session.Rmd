@@ -153,7 +153,7 @@ nhanes_tidy %>%
 
 # Five variables
 nhanes_tidy %>% 
-    ggplot(aes(x = bmi, y = bp_sys_ave, colours = age)) +
+    ggplot(aes(x = bmi, y = bp_sys_ave, colour = age)) +
     geom_point() +
     facet_grid(rows = vars(diabetes), 
                cols = vars(sex))
